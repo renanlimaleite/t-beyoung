@@ -1,7 +1,8 @@
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import { Container } from '../../components/Container/Container';
 import { Header } from './components/Header/Header';
+import { Resume } from './components/Resume/Resume';
 
 type Address = {
   city: string
@@ -15,7 +16,7 @@ type ParamsProps = {
   id: string
 }
 
-type item = {
+export type item = {
   name: string
   price: string
   qty: number
@@ -27,7 +28,7 @@ type Freight = {
   price: string
 }
 
-type dataProps = {
+export type dataProps = {
   address: Address
   name: string
   id: string
@@ -79,18 +80,7 @@ export function Details() {
       <Header>
         <h1>Olá, {data.name}</h1>
       </Header>      
-      <p>Número do pedido: {data.id}</p>
-      <div>
-        <h3>Resumo da compra:</h3>
-        <hr />
-        {!!data.items.length && data.items.map((item) => (
-          <Fragment key={item.name}>
-            <p>{item.qty}x {item.name}</p>
-            <p>{item.price}</p>
-            <hr />
-          </Fragment>
-        ))}
-      </div>
+      <Resume data={data} />
       <div>
         <h3>Prazo de entrega</h3>
         <p>de {data.freight.from} a {data.freight.to} dias</p>
