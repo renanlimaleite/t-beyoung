@@ -1,6 +1,7 @@
 import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import { Container } from '../../components/Container/Container';
+import { Header } from './components/Header/Header';
 
 type Address = {
   city: string
@@ -74,8 +75,10 @@ export function Details() {
     fetchData()
   }, [fetchData])
   return (
-    <Container>
-      <h1>Olá, {data.name}</h1>
+    <Container> 
+      <Header>
+        <h1>Olá, {data.name}</h1>
+      </Header>      
       <p>Número do pedido: {data.id}</p>
       <div>
         <h3>Resumo da compra:</h3>
