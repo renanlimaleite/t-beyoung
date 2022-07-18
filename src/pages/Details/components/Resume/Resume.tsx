@@ -2,7 +2,8 @@ import S from './resume.module.scss'
 
 import { Fragment } from "react";
 import { toCurrency } from "../../../../core/number";
-import { item } from "../../Details";
+import { item } from '../../types/details-type';
+
 
 type ResumeProps = {
   data: {

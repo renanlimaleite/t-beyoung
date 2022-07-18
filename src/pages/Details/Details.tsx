@@ -6,30 +6,7 @@ import { toCurrency } from '../../core/number';
 import { Header } from './components/Header/Header';
 import { Resume } from './components/Resume/Resume';
 import { Demand } from './components/Demand/Demand';
-
-type Address = {
-  city: string
-  number: number
-  postcode: string
-  state: string
-  street: string
-}
-
-type ParamsProps = {  
-  id: string
-}
-
-export type item = {
-  name: string
-  price: string
-  qty: number
-}
-
-type Freight = {
-  from: number
-  to: number
-  price: string
-}
+import { Address, Freight, item, UseParamsProps } from './types/details-type';
 
 export type dataProps = {
   address: Address
@@ -65,11 +42,8 @@ const INITIAL_STATE = {
 
 
 export function Details() {
-  const { id } = useParams<ParamsProps>()
+  const { id } = useParams<UseParamsProps>()
   const [data, setData] = useState<dataProps>(INITIAL_STATE)
-  console.log({ data })
-
-  
 
   const fetchData = useCallback(async () => {
     const response = await fetch(`http://localhost:5000/${id}.json`);
@@ -82,6 +56,7 @@ export function Details() {
   }, [fetchData])
   return (
     <Container> 
+      {/**HEADER COMPONENT */}
       <Header>
         <h1>Olá, {data.name}</h1>
         <Link to="/">
@@ -89,6 +64,7 @@ export function Details() {
         </Link>
       </Header>
       
+      {/**RESUME COMPONENT */}
       <Resume data={data} />
 
       <div className={S.grid}>
@@ -99,6 +75,7 @@ export function Details() {
           <p>Total: {toCurrency(data.total)}</p>
         </div>
 
+        {/**DEMAND COMPONENT */}
         <Demand status={data.status} />
 
       </div>
