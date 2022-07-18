@@ -1,0 +1,8 @@
+li:not(.active) {
+  text-transform: lowercase;
+}
+
+.active {
+  color: rgb(122, 122, 221);
+  text-transform: uppercase;
+}
